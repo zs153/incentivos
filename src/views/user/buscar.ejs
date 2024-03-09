@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Entidades</title>
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <!-- styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="antialiased">
+  <div class="wrapper">
+    <%- include('../partials/new') %>
+    <div class="page-wrapper">
+      <div class="page-body">
+        <div class="container-xl">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Resultado de la busqueda</h3>
+                </div>
+                <div class="card-body">
+                  <table class="table table-vcenter table-striped sortable" id="tblEntidades">
+                    <thead>
+                      <tr class="header">
+                        <th class="W-8">CIF</th>
+                        <th>Entidad</th>
+                        <th>Observación</th>
+                        <th class="w-5"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                  </table>
+                  <div id="pagination-wrapper" class="py-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('../partials/footer') %>
+  </div>
+
+  <script>
+    const orgList = <%- JSON.stringify(datos.entidades) %>
+    const cursor = <%- JSON.stringify(datos.cursor) %>
+    const parte = <%- JSON.stringify(datos.part) %>
+    const hasNextEntidades = <%- datos.hasNextEntidades %>
+    const hasPrevEntidades = <%- datos.hasPrevEntidades %>
+  </script>
+  <script src="/js/ayuda.min.js"></script>
+  <script src="/js/buscar.js"></script>
+</body>
+
+</html>
