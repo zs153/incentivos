@@ -1,18 +1,22 @@
 import { BIND_OUT, NUMBER } from "oracledb";
 import { simpleExecute } from "../services/database.js";
 
-const baseQuery = "SELECT ee.* FROM entidades ee";
-const insertSql = "BEGIN INCENTIVO_PKG.INSERTENTIDAD(:nifent,:desent,:adment,:obsent,:staent,:status,:usumov,:tipmov,:identi); END;";
-const updateSql = "BEGIN INCENTIVO_PKG.UPDATEENTIDAD(:identi,:nifent,:desent,:adment,:obsent,:staent,:status,:usumov,:tipmov); END;";
-const removeSql = "BEGIN INCENTIVO_PKG.DELETEENTIDAD(:identi,:usumov,:tipmov); END;";
+const baseQuery = "SELECT uu.* FROM usuarios uu";
+const insertSql = "BEGIN INCENTIVO_PKG.INSERTUSUARIO(:nomusu,:rolusu,:userid,:emausu,:telusu,:stausu,:usumov,:tipmov,:idusua); END;";
+const updateSql = "BEGIN INCENTIVO_PKG.UPDATEUSUARIO(:idusua,:nomusu,:rolusu,:userid,:emausu,:telusu,:stausu,:usumov,:tipmov); END;";
+const removeSql = "BEGIN INCENTIVO_PKG.DELETEUSUARIO(:idusua,:usumov,:tipmov); END;";
 
 export const find = async (context) => {
   // bind
   let query = baseQuery;
   const bind = context
 
-  if (context.IDENTI) {
-    query += " WHERE ee.identi = :identi";
+  if (context.IDUSUA) {
+    query += " WHERE uu.idusua = :idusua";
+  } else if (context.USERID) {
+    query += " WHERE uu.userid = :userid";
+  } else if (context.EMAUSU) {
+    query += " WHERE uu.emausu = :emausu";
   } 
 
   // proc
@@ -26,18 +30,18 @@ export const find = async (context) => {
 };
 export const findAll = async (context) => {
   // bind
-  let query = "WITH datos AS (SELECT ee.* FROM entidades ee WHERE ee.desent LIKE '%' || :part || '%' OR ee.nifent = :part OR :part IS NULL)";
+  let query = "WITH datos AS (SELECT uu.idusua,uu.userid,uu.nomusu,uu.telusu,uu.stausu FROM usuarios uu WHERE uu.nomusu LIKE '%' || :part || '%' OR :part IS NULL)";
   let bind = {
     limit: context.limit,
     part: context.part,
   };
 
   if (context.direction === 'next') {
-    bind.desent = context.cursor.next === '' ? null : context.cursor.next;
-    query += "SELECT * FROM datos WHERE desent > :desent OR :desent IS NULL ORDER BY desent ASC FETCH NEXT :limit ROWS ONLY"
+    bind.nomusu = context.cursor.next === '' ? null : context.cursor.next;
+    query += "SELECT * FROM datos WHERE nomusu > :nomusu OR :nomusu IS NULL ORDER BY nomusu ASC FETCH NEXT :limit ROWS ONLY"
   } else {
-    bind.desent = context.cursor.prev === '' ? null : context.cursor.prev;
-    query += "SELECT * FROM datos WHERE desent < :desent OR :desent IS NULL ORDER BY desent DESC FETCH NEXT :limit ROWS ONLY"
+    bind.nomusu = context.cursor.prev === '' ? null : context.cursor.prev;
+    query += "SELECT * FROM datos WHERE nomusu < :nomusu OR :nomusu IS NULL ORDER BY nomusu DESC FETCH NEXT :limit ROWS ONLY"
   }
 
   // proc
@@ -52,7 +56,7 @@ export const findAll = async (context) => {
 export const insert = async (context) => {
   // bind
   let bind = context
-  bind.IDENTI = {
+  bind.IDUSUA = {
     dir: BIND_OUT,
     type: NUMBER,
   };
@@ -61,7 +65,7 @@ export const insert = async (context) => {
   const ret = await simpleExecute(insertSql, bind)
 
   if (ret) {
-    bind.IDENTI = ret.outBinds.IDENTI
+    bind.IDUSUA = ret.outBinds.IDUSUA
     return ({ stat: 1, data: bind })
   } else {
     return ({ stat: 0, data: [] })

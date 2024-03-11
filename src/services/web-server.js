@@ -6,6 +6,7 @@ import cors from 'cors'
 import { port } from '../config/settings'
 // routes
 import apiEntidadRouter from '../routes/entidad.router'
+import apiUsuarioRouter from '../routes/usuario.router'
 
 let httpServer
 
@@ -24,7 +25,8 @@ function initialize() {
 
     // routes
     app.use('/api', apiEntidadRouter)
-
+    app.use('/api', apiUsuarioRouter)
+    
     // server
     httpServer
       .listen(port)
