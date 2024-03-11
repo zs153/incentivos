@@ -2,6 +2,9 @@ export const tiposMovimiento = {
   crearEntidad: 0,
   modificarEntidad: 1,
   borrarEntidad: 2,
+  crearUsuario: 3,
+  modificarUsuario: 4,
+  borrarUsuario: 5,
 }
 export const tiposRol = {
   usuario: 1,

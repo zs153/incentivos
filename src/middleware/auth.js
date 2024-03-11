@@ -37,9 +37,8 @@ const authRoutes = async (req, res, next) => {
           id: usuario.data.data[0].IDUSUA,
           userid: usuario.data.data[0].USERID,
           rol: usuario.data.data[0].ROLUSU,
-          oficina: usuario.data.data[0].OFIUSU,
         }
-
+        
         await V3.encrypt(payload, localKey, {
           audience: 'urn:example:client',
           issuer: 'http://localhost:4000',
@@ -71,7 +70,6 @@ const authRoutes = async (req, res, next) => {
         id: ret.id,
         userid: ret.userid,
         rol: ret.rol,
-        oficina: ret.oficina,
       }
 
       next()
