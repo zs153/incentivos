@@ -3,7 +3,7 @@ import {
   usuario,
   usuarios,
   crear,
-  modificiar,
+  modificar,
   borrar,
 } from "../controllers/usuario.controller";
 
@@ -13,7 +13,7 @@ const apiUsuarioRouter = express.Router();
 apiUsuarioRouter.post("/usuario", usuario);
 apiUsuarioRouter.post("/usuarios", usuarios);
 apiUsuarioRouter.post("/usuarios/insert", crear);
-apiUsuarioRouter.post("/usuarios/update", modificiar);
+apiUsuarioRouter.post("/usuarios/update", modificar);
 apiUsuarioRouter.post("/usuarios/delete", borrar);
 
 export default apiUsuarioRouter;

@@ -30,14 +30,11 @@ export const entidades = async (req, res) => {
 export const crear = async (req, res) => {
   // context
   const entidad = {
-    NOMUSU: req.body.entidad.NOMUSU,
-    OFIUSU: req.body.entidad.OFIUSU,
-    ROLUSU: req.body.entidad.ROLUSU,
-    USERID: req.body.entidad.USERID,
-    EMAUSU: req.body.entidad.EMAUSU,
-    PERUSU: req.body.entidad.PERUSU,
-    TELUSU: req.body.entidad.TELUSU,
-    STAUSU: req.body.entidad.STAUSU,
+    NIFENT: req.body.entidad.NIFENT,
+    DESENT: req.body.entidad.DESENT,
+    ADMENT: req.body.entidad.ADMENT,
+    OBSENT: req.body.entidad.OBSENT,
+    STAENT: req.body.entidad.STAENT,
   }
   const movimiento = {
     USUMOV: req.body.movimiento.USUMOV,
@@ -57,14 +54,12 @@ export const crear = async (req, res) => {
 export const modificiar = async (req, res) => {
   // context
   const entidad = {
-    IDUSUA: req.body.entidad.IDUSUA,
-    NOMUSU: req.body.entidad.NOMUSU,
-    OFIUSU: req.body.entidad.OFIUSU,
-    ROLUSU: req.body.entidad.ROLUSU,
-    EMAUSU: req.body.entidad.EMAUSU,
-    PERUSU: req.body.entidad.PERUSU,
-    TELUSU: req.body.entidad.TELUSU,
-    STAUSU: req.body.entidad.STAUSU,
+    IDENTI: req.body.entidad.IDENTI,
+    NIFENT: req.body.entidad.NIFENT,
+    DESENT: req.body.entidad.DESENT,
+    ADMENT: req.body.entidad.ADMENT,
+    OBSENT: req.body.entidad.OBSENT,
+    STAENT: req.body.entidad.STAENT,
   }
   const movimiento = {
     USUMOV: req.body.movimiento.USUMOV,
@@ -84,7 +79,7 @@ export const modificiar = async (req, res) => {
 export const borrar = async (req, res) => {
   // context
   const entidad = {
-    IDUSUA: req.body.entidad.IDUSUA,
+    IDENTI: req.body.entidad.IDENTI,
   }
   const movimiento = {
     USUMOV: req.body.movimiento.USUMOV,

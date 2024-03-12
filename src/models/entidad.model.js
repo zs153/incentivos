@@ -2,9 +2,9 @@ import { BIND_OUT, NUMBER } from "oracledb";
 import { simpleExecute } from "../services/database.js";
 
 const baseQuery = "SELECT ee.* FROM entidades ee";
-const insertSql = "BEGIN INCENTIVO_PKG.INSERTENTIDAD(:nifent,:desent,:adment,:obsent,:staent,:status,:usumov,:tipmov,:identi); END;";
-const updateSql = "BEGIN INCENTIVO_PKG.UPDATEENTIDAD(:identi,:nifent,:desent,:adment,:obsent,:staent,:status,:usumov,:tipmov); END;";
-const removeSql = "BEGIN INCENTIVO_PKG.DELETEENTIDAD(:identi,:usumov,:tipmov); END;";
+const insertSql = "BEGIN INCENTIVOS_PKG.INSERTENTIDAD(:nifent,:desent,:adment,:obsent,:staent,:usumov,:tipmov,:identi); END;";
+const updateSql = "BEGIN INCENTIVOS_PKG.UPDATEENTIDAD(:identi,:nifent,:desent,:adment,:obsent,:staent,:usumov,:tipmov); END;";
+const removeSql = "BEGIN INCENTIVOS_PKG.DELETEENTIDAD(:identi,:usumov,:tipmov); END;";
 
 export const find = async (context) => {
   // bind
