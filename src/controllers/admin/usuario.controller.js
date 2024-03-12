@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { serverAPI,puertoAPI } from '../../config/settings'
-import { arrTiposRol,tiposRol,tiposMovimiento } from '../../public/js/enumeraciones'
+import { arrTiposRol,estadosUsuario,tiposMovimiento } from '../../public/js/enumeraciones'
 
 export const mainPage = async (req, res) => {
   const user = req.user
@@ -151,7 +151,7 @@ export const insert = async (req, res) => {
       USERID: req.body.userid.toLowerCase(),
       EMAUSU: req.body.emausu,
       TELUSU: req.body.telusu,
-      STAUSU: req.body.stausu,
+      STAUSU: estadosUsuario.activo,
     }
     const movimiento = {
       USUMOV: user.id,
@@ -184,7 +184,7 @@ export const update = async (req, res) => {
     ROLUSU: req.body.rolusu,
     EMAUSU: req.body.emausu,
     TELUSU: req.body.telusu,
-    STAUSU: req.body.stausu,
+    STAUSU: estadosUsuario.activo
   }
   const movimiento = {
     USUMOV: user.id,

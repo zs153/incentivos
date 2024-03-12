@@ -34,54 +34,54 @@ const setError = (element, message) => {
   inputControl.classList.remove('is-valid');
 }
 
-const nifent = document.getElementById('nifent')
-const desent = document.getElementById('desent')
-const adment = document.getElementById('adment')
-const obsent = document.getElementById('obsent')
-const cbosta = document.getElementById('cbosta')
+const userid = document.getElementById('userid')
+const nomusu = document.getElementById('nomusu')
+const emausu = document.getElementById('emausu')
+const telusu = document.getElementById('telusu')
+const cborol = document.getElementById('cborol')
 
 const validate = () => {
-  const nifentValue = nifent.value.trim()
-  const desentValue = desent.value.trim()
-  const admentValue = adment.value.trim()
-  const obsentValue = obsent.value.trim()
-  const cbostaValue = cbosta.value
+  const useridValue = userid.value.trim()
+  const nomusuValue = nomusu.value.trim()
+  const emausuValue = emausu.value.trim()
+  const telusuValue = telusu.value.trim()
+  const cborolValue = cborol.value
 
-  if (nifentValue === '') {
-    setError(nifent, 'CIF requerido')
+  if (useridValue === '') {
+    setError(userid, 'UserID requerido')
     setTimeout(function () {
-      setSuccess(nifent)
+      setSuccess(userid)
     }, 3000)
     return false
   }
-  if (desentValue === '') {
-    setError(desent, 'Nombre entidad')
+  if (nomusuValue === '') {
+    setError(nomusu, 'Nombre requerido')
     setTimeout(function () {
-      setSuccess(desent)
+      setSuccess(nomusu)
     }, 3000)
     return false
   }
-  if (admentValue === '') {
-    setError(adment, 'Administración requerida')
+  if (emausuValue === '') {
+    setError(emausu, 'Email requerido')
     setTimeout(function () {
-      setSuccess(adment)
+      setSuccess(emausu)
     }, 3000)
     return false
   }
-  if (obsentValue === '') {
-    setError(obsent, 'Observación requerida')
+  if (telusuValue === '') {
+    setError(telusu, 'Teléfono requerido')
     setTimeout(function () {
-      setSuccess(obsent)
+      setSuccess(telusu)
     }, 3000)
     return false
   }
-  if (cbostaValue === '0') {
-    setError(cbosta, 'Consta en el 182 requerido')
+  if (cborolValue === '0') {
+    setError(cborol, 'Rol requerido')
     setTimeout(function () {
-      setSuccess(cbosta)
+      setSuccess(cborol)
     }, 3000)
     return false
   }
-  
+
   return true
 }

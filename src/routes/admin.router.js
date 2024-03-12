@@ -1,12 +1,15 @@
 import express from 'express'
 import { verifyTokenAndAdmin } from "../middleware/auth";
 
+import * as admin from '../controllers/admin/admin.controller'
 import * as entidad from '../controllers/admin/entidad.controller'
 import * as usuario from '../controllers/admin/usuario.controller'
 
 const adminRouter = express.Router()
 
 //--------------- paginas
+// main
+adminRouter.get('/', verifyTokenAndAdmin, admin.mainPage)
 // entidades
 adminRouter.get('/entidades', verifyTokenAndAdmin, entidad.mainPage)
 adminRouter.get('/entidades/add', verifyTokenAndAdmin, entidad.addPage)

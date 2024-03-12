@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { serverAPI,puertoAPI } from '../../config/settings'
-import { arrTiposRol,arrTiposPerfil,arrEstadosUsuario,estadosUsuario,tiposMovimiento,tiposRol } from '../../public/js/enumeraciones'
+import { arrTiposRol,tiposMovimiento } from '../../public/js/enumeraciones'
 
 export const mainPage = async (req, res) => {
   const user = req.user
@@ -10,12 +10,11 @@ export const mainPage = async (req, res) => {
   const part = req.query.part ? req.query.part.toUpperCase() : ''
 
   let cursor = req.query.cursor ? JSON.parse(req.query.cursor) : null
-  let hasPrevUsers = cursor ? true:false
+  let hasPrevEntis = cursor ? true:false
   let context = {}
 
   if (cursor) {
     context = {
-      oficina: user.rol === tiposRol.admin ? 0 : user.oficina,
       limit: limit + 1,
       direction: dir,
       cursor: JSON.parse(convertCursorToNode(JSON.stringify(cursor))),
@@ -23,7 +22,6 @@ export const mainPage = async (req, res) => {
     }
   } else {
     context = {
-      oficina: user.rol === tiposRol.admin ? 0 : user.oficina,
       limit: limit + 1,
       direction: dir,
       cursor: {
@@ -35,35 +33,35 @@ export const mainPage = async (req, res) => {
   }
 
   try {
-    const result = await axios.post(`http://${serverAPI}:${puertoAPI}/api/usuarios`, {
+    const result = await axios.post(`http://${serverAPI}:${puertoAPI}/api/entidades`, {
       context,
     })
 
-    let usuarios = result.data.data
-    let hasNextUsers = usuarios.length === limit +1
+    let entidades = result.data.data
+    let hasNextEntis = entidades.length === limit +1
     let nextCursor = ''
     let prevCursor = ''
     
-    if (hasNextUsers) {
-      nextCursor= dir === 'next' ? usuarios[limit - 1].NOMUSU : usuarios[0].NOMUSU
-      prevCursor = dir === 'next' ? usuarios[0].NOMUSU : usuarios[limit - 1].NOMUSU
+    if (hasNextEntis) {
+      nextCursor= dir === 'next' ? entidades[limit - 1].DESENT : entidades[0].DESENT
+      prevCursor = dir === 'next' ? entidades[0].DESENT : entidades[limit - 1].DESENT
 
-      usuarios.pop()
+      entidades.pop()
     } else {
-      nextCursor = dir === 'next' ? '' : usuarios[0]?.NOMUSU
-      prevCursor = dir === 'next' ? usuarios[0]?.NOMUSU : ''
+      nextCursor = dir === 'next' ? '' : entidades[0]?.DESENT
+      prevCursor = dir === 'next' ? entidades[0]?.DESENT : ''
       
       if (cursor) {
-        hasNextUsers = nextCursor === '' ? false : true
-        hasPrevUsers = prevCursor === '' ? false : true
+        hasNextEntis = nextCursor === '' ? false : true
+        hasPrevEntis = prevCursor === '' ? false : true
       } else {
-        hasNextUsers = false
-        hasPrevUsers = false
+        hasNextEntis = false
+        hasPrevEntis = false
       }
     }
 
     if (dir === 'prev') {
-      usuarios = usuarios.sort((a,b) => a.NOMUSU > b.NOMUSU ? 1:-1)
+      entidades = entidades.sort((a,b) => a.DESENT > b.DESENT ? 1:-1)
     }
 
     cursor = {
@@ -71,14 +69,13 @@ export const mainPage = async (req, res) => {
       prev: prevCursor,
     }    
     const datos = {
-      usuarios,
-      hasPrevUsers,
-      hasNextUsers,
+      entidades,
+      hasPrevEntis,
+      hasNextEntis,
       cursor: convertNodeToCursor(JSON.stringify(cursor)),
-      estadosUsuario,
     }
 
-    res.render('admin/usuarios', { user, datos })
+    res.render('admin/entidades', { user, datos })
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
@@ -96,17 +93,11 @@ export const addPage = async (req, res) => {
   const filteredRol = arrTiposRol.filter(itm => itm.id <= user.rol)
 
   try {
-    const oficinas = await axios.post(`http://${serverAPI}:${puertoAPI}/api/oficina`, {
-      context: {},
-    })
     const datos = {
-      oficinas: oficinas.data.data,
       filteredRol,
-      arrTiposPerfil,
-      arrEstadosUsuario,
     }
 
-    res.render('admin/usuarios/add', { user, datos })
+    res.render('admin/entidades/add', { user, datos })
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
@@ -124,23 +115,17 @@ export const editPage = async (req, res) => {
   const filteredRol = arrTiposRol.filter(itm => itm.id <= user.rol)
 
   try {
-    const oficinas = await axios.post(`http://${serverAPI}:${puertoAPI}/api/oficina`, {
-      context: {}
-    })
-    const usuario = await axios.post(`http://${serverAPI}:${puertoAPI}/api/usuario`, {
+    const entidad = await axios.post(`http://${serverAPI}:${puertoAPI}/api/entidad`, {
       context: {
-        IDUSUA: req.params.id,
+        IDENTI: req.params.id,
       },
     })
     const datos = {
-      usuario: usuario.data.data[0],
-      oficinas: oficinas.data.data,
+      entidad: entidad.data.data[0],
       filteredRol,
-      arrTiposPerfil,
-      arrEstadosUsuario,
     }
 
-    res.render('admin/usuarios/edit', { user, datos })
+    res.render('admin/entidades/edit', { user, datos })
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
@@ -155,32 +140,29 @@ export const editPage = async (req, res) => {
 }
 
 // proc
-
 export const insert = async (req, res) => {
   const user = req.user
 
   try {
-    const usuario = {
-      NOMUSU: req.body.nomusu.toUpperCase(),
-      OFIUSU: req.body.ofiusu,
-      ROLUSU: req.body.rolusu,
-      USERID: req.body.userid.toLowerCase(),
-      EMAUSU: req.body.emausu,
-      PERUSU: req.body.perusu,
-      TELUSU: req.body.telusu,
-      STAUSU: req.body.stausu,
+    const entidad = {
+      NIFENT: req.body.nifent.toUpperCase(),
+      DESENT: req.body.desent.toUpperCase(),
+      ADMENT: req.body.adment.toUpperCase(),
+      OBSENT: req.body.obsent.toUpperCase(),
+      STAENT: req.body.staent,
+      STATUS: req.body.status,
     }
     const movimiento = {
       USUMOV: user.id,
-      TIPMOV: tiposMovimiento.crearUsuario,
+      TIPMOV: tiposMovimiento.crearEntidad,
     }
 
-    await axios.post(`http://${serverAPI}:${puertoAPI}/api/usuarios/insert`, {
-      usuario,
+    await axios.post(`http://${serverAPI}:${puertoAPI}/api/entidades/insert`, {
+      entidad,
       movimiento,
     })
 
-    res.redirect(`/admin/usuarios?part=${req.query.part}`)
+    res.redirect(`/admin/entidades?part=${req.query.part}`)
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
@@ -195,28 +177,27 @@ export const insert = async (req, res) => {
 }
 export const update = async (req, res) => {
   const user = req.user
-  const usuario = {
-    IDUSUA: req.body.idusua,
-    NOMUSU: req.body.nomusu.toUpperCase(),
-    OFIUSU: req.body.ofiusu,
-    ROLUSU: req.body.rolusu,
-    EMAUSU: req.body.emausu,
-    PERUSU: req.body.perusu,
-    TELUSU: req.body.telusu,
-    STAUSU: req.body.stausu,
+  const entidad = {
+    IDENTI: req.body.identi,
+    NIFENT: req.body.nifent.toUpperCase(),
+    DESENT: req.body.desent.toUpperCase(),
+    ADMENT: req.body.adment.toUpperCase(),
+    OBSENT: req.body.obsent.toUpperCase(),
+    STAENT: req.body.staent,
+    STATUS: req.body.status,
   }
   const movimiento = {
     USUMOV: user.id,
-    TIPMOV: tiposMovimiento.modificarUsuario,
+    TIPMOV: tiposMovimiento.modificarEntidad,
   }
 
   try {
-    await axios.post(`http://${serverAPI}:${puertoAPI}/api/usuarios/update`, {
-      usuario,
+    await axios.post(`http://${serverAPI}:${puertoAPI}/api/entidades/update`, {
+      entidad,
       movimiento,
     })
 
-    res.redirect(`/admin/usuarios?part=${req.query.part}`)
+    res.redirect(`/admin/entidades?part=${req.query.part}`)
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
@@ -231,21 +212,21 @@ export const update = async (req, res) => {
 }
 export const remove = async (req, res) => {
   const user = req.user
-  const usuario = {
-    IDUSUA: req.body.idusua,
+  const entidad = {
+    IDENTI: req.body.identi,
   }
   const movimiento = {
     USUMOV: user.id,
-    TIPMOV: tiposMovimiento.borrarUsuario,
+    TIPMOV: tiposMovimiento.borrarEntidad,
   }
 
   try {
-    await axios.post(`http://${serverAPI}:${puertoAPI}/api/usuarios/delete`, {
-      usuario,
+    await axios.post(`http://${serverAPI}:${puertoAPI}/api/entidades/delete`, {
+      entidad,
       movimiento,
     })
 
-    res.redirect(`/admin/usuarios?part=${req.query.part}`)
+    res.redirect(`/admin/entidades?part=${req.query.part}`)
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {

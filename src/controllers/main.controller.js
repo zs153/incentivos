@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { serverAPI,puertoAPI,serverAUTH,puertoAUTH,serverWEB, puertoWEB } from '../config/settings'
 
+// paginas
 export const mainPage = async (req, res) => {
-
   res.render('user')
 }
 export const buscarPage = async (req, res) => {
