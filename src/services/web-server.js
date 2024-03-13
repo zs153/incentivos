@@ -7,6 +7,7 @@ import { port } from '../config/settings'
 // routes
 import apiEntidadRouter from '../routes/entidad.router'
 import apiUsuarioRouter from '../routes/usuario.router'
+import apiCargaRouter from '../routes/carga.router'
 
 let httpServer
 
@@ -26,7 +27,8 @@ function initialize() {
     // routes
     app.use('/api', apiEntidadRouter)
     app.use('/api', apiUsuarioRouter)
-    
+    app.use('/api', apiCargaRouter)
+
     // server
     httpServer
       .listen(port)

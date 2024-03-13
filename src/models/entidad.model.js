@@ -2,8 +2,8 @@ import { BIND_OUT, NUMBER } from "oracledb";
 import { simpleExecute } from "../services/database.js";
 
 const baseQuery = "SELECT ee.* FROM entidades ee";
-const insertSql = "BEGIN INCENTIVOS_PKG.INSERTENTIDAD(:nifent,:desent,:adment,:obsent,:staent,:usumov,:tipmov,:identi); END;";
-const updateSql = "BEGIN INCENTIVOS_PKG.UPDATEENTIDAD(:identi,:nifent,:desent,:adment,:obsent,:staent,:usumov,:tipmov); END;";
+const insertSql = "BEGIN INCENTIVOS_PKG.INSERTENTIDAD(:nifent,:desent,:adment,:tipinc,:usumov,:tipmov,:identi); END;";
+const updateSql = "BEGIN INCENTIVOS_PKG.UPDATEENTIDAD(:identi,:nifent,:desent,:adment,:tipinc,:usumov,:tipmov); END;";
 const removeSql = "BEGIN INCENTIVOS_PKG.DELETEENTIDAD(:identi,:usumov,:tipmov); END;";
 
 export const find = async (context) => {
@@ -26,7 +26,7 @@ export const find = async (context) => {
 };
 export const findAll = async (context) => {
   // bind
-  let query = "WITH datos AS (SELECT ee.* FROM entidades ee WHERE ee.desent LIKE '%' || :part || '%' OR ee.nifent = :part OR :part IS NULL)";
+  let query = "WITH datos AS (SELECT ee.* FROM entidades ee WHERE ee.desent LIKE '%' || :part || '%' OR ee.nifent LIKE '%' || :part || '%' OR :part IS NULL)";
   let bind = {
     limit: context.limit,
     part: context.part,

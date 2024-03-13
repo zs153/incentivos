@@ -33,8 +33,7 @@ export const crear = async (req, res) => {
     NIFENT: req.body.entidad.NIFENT,
     DESENT: req.body.entidad.DESENT,
     ADMENT: req.body.entidad.ADMENT,
-    OBSENT: req.body.entidad.OBSENT,
-    STAENT: req.body.entidad.STAENT,
+    TIPINC: req.body.entidad.TIPINC,
   }
   const movimiento = {
     USUMOV: req.body.movimiento.USUMOV,
@@ -58,8 +57,7 @@ export const modificiar = async (req, res) => {
     NIFENT: req.body.entidad.NIFENT,
     DESENT: req.body.entidad.DESENT,
     ADMENT: req.body.entidad.ADMENT,
-    OBSENT: req.body.entidad.OBSENT,
-    STAENT: req.body.entidad.STAENT,
+    TIPINC: req.body.entidad.TIPINC,
   }
   const movimiento = {
     USUMOV: req.body.movimiento.USUMOV,
