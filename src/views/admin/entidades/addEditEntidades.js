@@ -37,15 +37,13 @@ const setError = (element, message) => {
 const nifent = document.getElementById('nifent')
 const desent = document.getElementById('desent')
 const adment = document.getElementById('adment')
-const obsent = document.getElementById('obsent')
-const cbosta = document.getElementById('cbosta')
+const cbotip = document.getElementById('cbotip')
 
 const validate = () => {
   const nifentValue = nifent.value.trim()
   const desentValue = desent.value.trim()
   const admentValue = adment.value.trim()
-  const obsentValue = obsent.value.trim()
-  const cbostaValue = cbosta.value
+  const cbotipValue = cbotip.value
 
   if (nifentValue === '') {
     setError(nifent, 'CIF requerido')
@@ -68,17 +66,10 @@ const validate = () => {
     }, 3000)
     return false
   }
-  if (obsentValue === '') {
-    setError(obsent, 'Observación requerida')
+  if (cbotipValue === '0') {
+    setError(cbotip, 'Tipo requerido')
     setTimeout(function () {
-      setSuccess(obsent)
-    }, 3000)
-    return false
-  }
-  if (cbostaValue === '0') {
-    setError(cbosta, 'Consta en el 182 requerido')
-    setTimeout(function () {
-      setSuccess(cbosta)
+      setSuccess(cbotip)
     }, 3000)
     return false
   }

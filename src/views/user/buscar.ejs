@@ -29,8 +29,7 @@
                       <tr class="header">
                         <th class="W-8">CIF</th>
                         <th>Entidad</th>
-                        <th>Observación</th>
-                        <th class="w-5"></th>
+                        <th>Tipo incentivo</th>
                       </tr>
                     </thead>
                     <tbody id="table-body">
@@ -51,6 +50,7 @@
     const orgList = <%- JSON.stringify(datos.entidades) %>
     const cursor = <%- JSON.stringify(datos.cursor) %>
     const parte = <%- JSON.stringify(datos.part) %>
+    const arrTipos = <%- JSON.stringify(datos.arrTiposIncentivo) %>
     const hasNextEntidades = <%- datos.hasNextEntidades %>
     const hasPrevEntidades = <%- datos.hasPrevEntidades %>
   </script>

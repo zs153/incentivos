@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { serverAPI,puertoAPI,serverAUTH,puertoAUTH,serverWEB, puertoWEB } from '../config/settings'
+import { arrTiposIncentivo } from '../public/js/enumeraciones'
 
 // paginas
 export const mainPage = async (req, res) => {
@@ -75,6 +76,7 @@ export const buscarPage = async (req, res) => {
       hasNextEntidades,
       cursor: convertNodeToCursor(JSON.stringify(cursor)),
       part,
+      arrTiposIncentivo,
     }
 
     res.render('user/buscar', {datos})

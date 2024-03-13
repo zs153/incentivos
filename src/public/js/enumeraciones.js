@@ -5,6 +5,7 @@ export const tiposMovimiento = {
   crearUsuario: 3,
   modificarUsuario: 4,
   borrarUsuario: 5,
+  crearCarga: 41,
 }
 export const tiposRol = {
   usuario: 1,

@@ -1,3 +1,7 @@
+const descar = document.getElementById("descar");
+const ficcar = document.getElementById("ficcar");
+const refcar = document.getElementById("refcar");
+
 const getCookie = (key) => {
   let value = ''
   document.cookie.split(';').forEach((e) => {
@@ -22,6 +26,7 @@ const deleteCookie = () => {
 const setSuccess = (element) => {
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.invalid-feedback');
+
   errorDisplay.innerText = '';
   inputControl.classList.add('is-valid');
   element.classList.remove('is-invalid');
@@ -29,50 +34,37 @@ const setSuccess = (element) => {
 const setError = (element, message) => {
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.invalid-feedback');
+
   errorDisplay.innerText = message;
   element.classList.add('is-invalid');
   inputControl.classList.remove('is-valid');
 }
-
-const nifent = document.getElementById('nifent')
-const desent = document.getElementById('desent')
-const adment = document.getElementById('adment')
-const cbotip = document.getElementById('cbotip')
-
 const validate = () => {
-  const nifentValue = nifent.value.trim()
-  const desentValue = desent.value.trim()
-  const admentValue = adment.value.trim()
-  const cbotipValue = cbotip.value
+  const descarValue = descar.value.trim();
+  const ficcarValue = ficcar.value.trim();
+  const refcarValue = refcar.value.trim();
 
-  if (nifentValue === '') {
-    setError(nifent, 'CIF requerido')
+  if (descarValue === "") {
+    setError(descar, "Descripción requerida");
     setTimeout(function () {
-      setSuccess(nifent)
-    }, 3000)
-    return false
+      setSuccess(descar);
+    }, 3000);
+    return false;
   }
-  if (desentValue === '') {
-    setError(desent, 'Nombre entidad')
+  if (ficcarValue === "") {
+    setError(ficcar, "Nombre de fichero requerido");
     setTimeout(function () {
-      setSuccess(desent)
-    }, 3000)
-    return false
+      setSuccess(ficcar);
+    }, 3000);
+    return false;
   }
-  if (admentValue === '') {
-    setError(adment, 'Administración requerida')
+  if (refcarValue === "") {
+    setError(refcar, "Referencia requerida");
     setTimeout(function () {
-      setSuccess(adment)
-    }, 3000)
-    return false
+      setSuccess(refcar);
+    }, 3000);
+    return false;
   }
-  if (cbotipValue === '0') {
-    setError(cbotip, 'Tipo requerido')
-    setTimeout(function () {
-      setSuccess(cbotip)
-    }, 3000)
-    return false
-  }
-  
+
   return true
 }

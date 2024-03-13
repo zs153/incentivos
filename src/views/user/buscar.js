@@ -59,7 +59,7 @@ const buildTable = (state) => {
     cell = document.createElement('td')
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
-        <div class="font-weight-medium">${element.OBSENT}</div>
+        <div class="font-weight-medium">${arrTipos[element.TIPINC -1].des}</div>
       </div>
     </div>`
     row.appendChild(cell)

@@ -13,7 +13,7 @@
 
 <body class="antialiased">
   <div class="wrapper">
-    <%- include('../../partials/header') %>
+    <%- include('../../partials/headerSesion') %>
     <%- include('../../partials/navbar') %>
     <div class="page-wrapper">
       <div class="page-body">
@@ -38,7 +38,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-8">
+                      <div class="col-6">
                         <div class="mb-1">
                           <div class="input-control">
                             <label class="form-label required">Entidad</label>
@@ -58,24 +58,17 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-10">
-                        <div class="mb-1">
-                          <div class="input-control">
-                            <label class="form-label required">Observación</label>
-                            <input type="text" name="obsent" id="obsent" class="form-control" value="<%- datos.entidad.OBSENT %>" />
-                            <div class="invalid-feedback"></div>
-                          </div>
-                        </div>
-                      </div>
                       <div class="col-2">
                         <div class="mb-1">
                           <div class="input-control">
-                            <div class="form-label required">Consta en 182</div>
-                            <select class="form-select form-control" id="cbosta" name="staent" value="<%- datos.entidad.STAENT %>">
-                              <option value="1" <%- datos.entidad.STAENT === 1 ? " selected" : "" %>>Sí</option>
-                              <option value="2" <%- datos.entidad.STAENT === 2 ? " selected" : "" %>>No</option>
+                            <div class="form-label required">Tipo</div>
+                            <select class="form-select form-control" id="cbotip" name="tipinc" value="<%- datos.entidad.TIPINC %>">
+                              <% datos.arrTiposIncentivo.map(element=> { %>
+                                <option value="<%- element.id %>"
+                                  <%- element.id === datos.entidad.TIPINC ? " selected" :"" %>>
+                                  <%= element.des %>
+                                </option>
+                              <% }) %>
                             </select>
                             <div class="invalid-feedback"></div>
                           </div>

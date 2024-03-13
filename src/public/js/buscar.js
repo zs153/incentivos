@@ -59,7 +59,7 @@ const buildTable = (state) => {
     cell = document.createElement('td')
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
-        <div class="font-weight-medium">${element.OBSENT}</div>
+      <div class="font-weight-medium">${arrTipos[element.TIPINC -1].des}</div>
       </div>
     </div>`
     row.appendChild(cell)
@@ -73,13 +73,13 @@ const createPages = () => {
   let str = "<ul>";
 
   if (hasPrevEntidades) {
-    str += "<li class='page-item previous no'><a href='/buscar?cursor="+ JSON.stringify(cursor) + "&part=" + parte + "&dir=prev' class='nav-link'>&#9664 Anterior</a>";
+    str += "<li class='page-item previous no'><a href='/buscar?cursor=" + JSON.stringify(cursor) + "&part=" + parte + "&dir=prev' class='nav-link'>&#9664 Anterior</a>";
   } else {
     str += "<li><a href='#' class='nav-link disabled'>&#9664 Anterior</a>";
   }
 
   if (hasNextEntidades) {
-    str += "<li class='page-item next no'><a href='/buscar?cursor="+ JSON.stringify(cursor) + "&part=" + parte + "&dir=next' class='nav-link'>Siguiente &#9654</a>";
+    str += "<li class='page-item next no'><a href='/buscar?cursor=" + JSON.stringify(cursor) + "&part=" + parte + "&dir=next' class='nav-link'>Siguiente &#9654</a>";
   } else {
     str += "<li><a href='#' class='nav-link disabled'>Siguiente &#9654</a>";
   }

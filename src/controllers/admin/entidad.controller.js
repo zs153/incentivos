@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { serverAPI,puertoAPI } from '../../config/settings'
-import { arrTiposRol,tiposMovimiento } from '../../public/js/enumeraciones'
+import { arrTiposRol,tiposMovimiento,arrTiposIncentivo } from '../../public/js/enumeraciones'
 
 export const mainPage = async (req, res) => {
   const user = req.user
@@ -95,6 +95,7 @@ export const addPage = async (req, res) => {
   try {
     const datos = {
       filteredRol,
+      arrTiposIncentivo,
     }
 
     res.render('admin/entidades/add', { user, datos })
@@ -123,6 +124,7 @@ export const editPage = async (req, res) => {
     const datos = {
       entidad: entidad.data.data[0],
       filteredRol,
+      arrTiposIncentivo,
     }
 
     res.render('admin/entidades/edit', { user, datos })
@@ -148,9 +150,7 @@ export const insert = async (req, res) => {
       NIFENT: req.body.nifent.toUpperCase(),
       DESENT: req.body.desent.toUpperCase(),
       ADMENT: req.body.adment.toUpperCase(),
-      OBSENT: req.body.obsent.toUpperCase(),
-      STAENT: req.body.staent,
-      STATUS: req.body.status,
+      TIPINC: req.body.tipinc,
     }
     const movimiento = {
       USUMOV: user.id,
@@ -182,9 +182,7 @@ export const update = async (req, res) => {
     NIFENT: req.body.nifent.toUpperCase(),
     DESENT: req.body.desent.toUpperCase(),
     ADMENT: req.body.adment.toUpperCase(),
-    OBSENT: req.body.obsent.toUpperCase(),
-    STAENT: req.body.staent,
-    STATUS: req.body.status,
+    TIPINC: req.body.tipinc,
   }
   const movimiento = {
     USUMOV: user.id,
