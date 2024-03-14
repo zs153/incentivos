@@ -57,6 +57,7 @@ const buildTable = (state) => {
 
     // col3
     cell = document.createElement('td')
+    cell.classList.add("w-15")
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
         <div class="font-weight-medium">${arrTipos.find(o => o.id === element.TIPINC).des}</div>
