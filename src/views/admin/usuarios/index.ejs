@@ -109,13 +109,14 @@
   </div>
 
   <script>
-    const orgList = <%- JSON.stringify(datos.usuarios) %>
-    const cursor = <%- JSON.stringify(datos.cursor) %>
     const hasNexts = <%- datos.hasNextUsers %>
     const hasPrevs = <%- datos.hasPrevUsers %>
   </script>
   <script src="/js/ayuda.min.js"></script>
   <script src="/js/admin/indexUsuarios.js"></script>
+  <script>
+    buildTable(<%- JSON.stringify(datos.usuarios) %>, <%- JSON.stringify(datos.cursor) %>)
+  </script>
 </body>
 
 </html>

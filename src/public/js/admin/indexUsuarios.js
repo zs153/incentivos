@@ -52,7 +52,7 @@ const sortTableByColumn = (table, column, asc = true) => {
   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 }
-const buildTable = (state) => {
+const buildTable = (state,cursor) => {
   const table = document.getElementById('table-body')
   const myList = state
   table.innerHTML = ''
@@ -116,9 +116,9 @@ const buildTable = (state) => {
     table.appendChild(row)
   })
 
-  createPages()
+  createPages(cursor)
 }
-const createPages = () => {
+const createPages = (cursor) => {
   let str = "<ul>";
 
   if (hasPrevs) {
@@ -150,6 +150,3 @@ elemNew.setAttribute('href', `/admin/usuarios/add?part=${getCookie('filtro')}`)
 
 const elemDel = document.getElementById('del');
 elemDel.setAttribute('action', `/admin/usuarios/delete?part=${getCookie('filtro')}`)
-
-// tabla
-buildTable(orgList)

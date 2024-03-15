@@ -30,7 +30,7 @@ const sortTableByColumn = (table, column, asc = true) => {
   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 }
-const buildTable = (state) => {
+const buildTable = (state, cursor, part, arrTipos) => {
   const table = document.getElementById('table-body')
   const myList = state
   table.innerHTML = ''
@@ -57,10 +57,20 @@ const buildTable = (state) => {
 
     // col3
     cell = document.createElement('td')
+    cell.classList.add("w-5")
+    cell.innerHTML = `<div class="d-flex align-items-center">
+      <div class="flex-fill">
+        <div class="font-weight-medium">${element.ADMENT}</div>
+      </div>
+    </div>`
+    row.appendChild(cell)
+
+    // col4
+    cell = document.createElement('td')
     cell.classList.add("w-15")
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
-      <div class="font-weight-medium">${arrTipos.find(o => o.id === element.TIPINC).des}</div>
+        <div class="font-weight-medium">${arrTipos.find(o => o.id === element.TIPINC).des}</div>
       </div>
     </div>`
     row.appendChild(cell)
@@ -68,19 +78,19 @@ const buildTable = (state) => {
     table.appendChild(row)
   })
 
-  createPages()
+  createPages(cursor,part)
 }
-const createPages = () => {
+const createPages = (cursor, part) => {
   let str = "<ul>";
 
   if (hasPrevEntidades) {
-    str += "<li class='page-item previous no'><a href='/buscar?cursor=" + JSON.stringify(cursor) + "&part=" + parte + "&dir=prev' class='nav-link'>&#9664 Anterior</a>";
+    str += "<li class='page-item previous no'><a href='/buscar?cursor=" + JSON.stringify(cursor) + "&part=" + part + "&dir=prev' class='nav-link'>&#9664 Anterior</a>";
   } else {
     str += "<li><a href='#' class='nav-link disabled'>&#9664 Anterior</a>";
   }
 
   if (hasNextEntidades) {
-    str += "<li class='page-item next no'><a href='/buscar?cursor=" + JSON.stringify(cursor) + "&part=" + parte + "&dir=next' class='nav-link'>Siguiente &#9654</a>";
+    str += "<li class='page-item next no'><a href='/buscar?cursor=" + JSON.stringify(cursor) + "&part=" + part + "&dir=next' class='nav-link'>Siguiente &#9654</a>";
   } else {
     str += "<li><a href='#' class='nav-link disabled'>Siguiente &#9654</a>";
   }
@@ -92,6 +102,3 @@ const createPages = () => {
 // inicializacion
 const elemNew = document.getElementById('new');
 elemNew.setAttribute('href', `/`)
-
-// tabla
-buildTable(orgList)

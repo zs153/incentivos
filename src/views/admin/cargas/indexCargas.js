@@ -14,7 +14,6 @@ const setCookie = (name, value, days) => {
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     expires = "; expires=" + date.toUTCString();
   }
-  // document.cookie = name + "=" + (encodeURIComponent(value) || "")  + expires + "; path=/";
   document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 const deleteCookie = () => {
@@ -53,7 +52,7 @@ const sortTableByColumn = (table, column, asc = true) => {
   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-asc", asc);
   table.querySelector(`th:nth-child(${column + 1})`).classList.toggle("th-sort-desc", !asc);
 }
-const buildTable = (state) => {
+const buildTable = (state,cursor) => {
   const table = document.getElementById('table-body')
   const myList = state
   table.innerHTML = ''
@@ -120,9 +119,9 @@ const buildTable = (state) => {
     table.appendChild(row)
   })
 
-  createPages()
+  createPages(cursor)
 }
-const createPages = () => {
+const createPages = (cursor) => {
   let str = "<ul>";
 
   if (hasPrevs) {
@@ -151,6 +150,3 @@ elemBuscar.value = getCookie('filtro')
 // incializacion
 const elemNew = document.getElementById('new');
 elemNew.setAttribute('href', `/admin/cargas/add?part=${getCookie('filtro')}`)
-
-// tabla
-buildTable(orgList)
