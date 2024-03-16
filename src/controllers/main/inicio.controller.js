@@ -1,7 +1,7 @@
 // imports
 import axios from 'axios'
-import { serverAPI,puertoAPI,serverAUTH,puertoAUTH,serverWEB, puertoWEB } from '../config/settings'
-import { arrTiposIncentivo } from '../public/js/enumeraciones'
+import { serverAPI,puertoAPI,serverAUTH,puertoAUTH,serverWEB, puertoWEB } from '../../config/settings'
+import { arrTiposIncentivo } from '../../public/js/enumeraciones'
 
 // pages
 export const mainPage = async (req, res) => {

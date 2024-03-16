@@ -1,7 +1,7 @@
 // imports
 import express from "express";
 import authRoutes from '../middleware/auth'
-import { mainPage, buscarPage, loginPage, cleanPage } from "../controllers/main.controller";
+import { mainPage, buscarPage, loginPage, cleanPage } from "../controllers/main/inicio.controller";
 
 const mainRouter = express.Router();
 
