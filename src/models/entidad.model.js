@@ -26,7 +26,7 @@ export const find = async (context) => {
 };
 export const findAll = async (context) => {
   // bind
-  let query = "WITH datos AS (SELECT ee.nifent,ee.desent,ee.adment,ee.tipinc FROM entidades ee WHERE ee.desent LIKE '%' || :part || '%' OR ee.nifent LIKE '%' || :part || '%' OR :part IS NULL)";
+  let query = "WITH datos AS (SELECT ee.identi,ee.nifent,ee.desent,ee.adment,ee.tipinc FROM entidades ee WHERE ee.desent LIKE '%' || :part || '%' OR ee.nifent LIKE '%' || :part || '%' OR :part IS NULL)";
   let bind = {
     limit: context.limit,
     part: context.part,
