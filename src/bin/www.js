@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-/**
- * Module dependencies.
- */
+// imports
 import http from "http";
 import app from "../app";
 import { puertoWEB } from '../config/settings'

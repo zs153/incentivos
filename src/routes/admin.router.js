@@ -1,16 +1,17 @@
+// imports
 import express from 'express'
 import { verifyTokenAndAdmin } from "../middleware/auth";
 
-import * as admin from '../controllers/admin/admin.controller'
+import * as inicio from '../controllers/admin/inicio.controller'
 import * as entidad from '../controllers/admin/entidad.controller'
 import * as usuario from '../controllers/admin/usuario.controller'
 import * as carga from '../controllers/admin/carga.controller'
 
 const adminRouter = express.Router()
 
-//--------------- paginas
-// main
-adminRouter.get('/', verifyTokenAndAdmin, admin.mainPage)
+// pages
+// inicio
+adminRouter.get('/', verifyTokenAndAdmin, inicio.mainPage)
 // entidades
 adminRouter.get('/entidades', verifyTokenAndAdmin, entidad.mainPage)
 adminRouter.get('/entidades/add', verifyTokenAndAdmin, entidad.addPage)
@@ -23,7 +24,7 @@ adminRouter.get('/usuarios/edit/:id', verifyTokenAndAdmin, usuario.editPage)
 adminRouter.get('/cargas', verifyTokenAndAdmin, carga.mainPage)
 adminRouter.get('/cargas/add', verifyTokenAndAdmin, carga.addPage)
 
-//--------------- procedures
+// proc
 // entidades
 adminRouter.post('/entidades/insert', verifyTokenAndAdmin, entidad.insert)
 adminRouter.post('/entidades/update', verifyTokenAndAdmin, entidad.update)
@@ -35,4 +36,5 @@ adminRouter.post('/usuarios/delete', verifyTokenAndAdmin, usuario.remove)
 // cargas
 adminRouter.post('/cargas/insert', verifyTokenAndAdmin, carga.insert)
 
+// exports
 export default adminRouter

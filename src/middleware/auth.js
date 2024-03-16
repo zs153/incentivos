@@ -1,9 +1,11 @@
+// imports
 import axios from 'axios'
 import { createPublicKey, createSecretKey } from 'crypto'
 import { V4, V3 } from 'paseto'
 import { tiposRol } from '../public/js/enumeraciones'
 import { publicKey, puertoAPI, secreto, serverAPI } from '../config/settings'
 
+// proc
 const authRoutes = async (req, res, next) => {
   let tokenHeader = req.cookies.auth
 
@@ -90,4 +92,5 @@ export const verifyTokenAndAdmin = (req, res, next) => {
   })
 }
 
+// exports
 export default authRoutes

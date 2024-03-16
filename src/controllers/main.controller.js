@@ -1,8 +1,9 @@
+// imports
 import axios from 'axios'
 import { serverAPI,puertoAPI,serverAUTH,puertoAUTH,serverWEB, puertoWEB } from '../config/settings'
 import { arrTiposIncentivo } from '../public/js/enumeraciones'
 
-// paginas
+// pages
 export const mainPage = async (req, res) => {
   res.render('main/index')
 }
@@ -106,6 +107,8 @@ export const cleanPage = async (req, res) => {
 
   res.render('main/clean', { user, datos })
 }
+
+// proc
 
 // helpers
 const convertNodeToCursor = (node) => {

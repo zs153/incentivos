@@ -1,7 +1,9 @@
+// imports
 import axios from 'axios'
 import { serverAPI,puertoAPI } from '../../config/settings'
 import { arrTiposRol,estadosUsuario,tiposMovimiento } from '../../public/js/enumeraciones'
 
+// pages
 export const mainPage = async (req, res) => {
   const user = req.user
 
@@ -140,7 +142,6 @@ export const editPage = async (req, res) => {
 }
 
 // proc
-
 export const insert = async (req, res) => {
   const user = req.user
 

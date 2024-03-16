@@ -1,7 +1,9 @@
+// imports
 import axios from 'axios'
 import { serverAPI,puertoAPI } from '../../config/settings'
 import { arrTiposRol,tiposMovimiento,arrTiposIncentivo } from '../../public/js/enumeraciones'
 
+// pages
 export const mainPage = async (req, res) => {
   const user = req.user
 
