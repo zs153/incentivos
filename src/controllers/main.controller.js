@@ -4,7 +4,7 @@ import { arrTiposIncentivo } from '../public/js/enumeraciones'
 
 // paginas
 export const mainPage = async (req, res) => {
-  res.render('user')
+  res.render('main/index')
 }
 export const buscarPage = async (req, res) => {
   const dir = req.query.dir ? req.query.dir : 'next'
@@ -79,7 +79,7 @@ export const buscarPage = async (req, res) => {
       arrTiposIncentivo,
     }
 
-    res.render('user/buscar', {datos})
+    res.render('main/buscar', {datos})
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("user/error400", {
@@ -104,7 +104,7 @@ export const cleanPage = async (req, res) => {
     puertoWEB,
   }
 
-  res.render('clean', { user, datos })
+  res.render('main/clean', { user, datos })
 }
 
 // helpers
