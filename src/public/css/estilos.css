@@ -100,7 +100,6 @@
   --tblr-white-rgb: 255, 255, 255;
   --tblr-black-rgb: 0, 0, 0;
   --tblr-body-color-rgb: 29, 39, 59;
-  --tblr-body-bg-rgb: 241, 245, 249;
   --tblr-font-sans-serif: Nunito, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
   --tblr-font-monospace: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   --tblr-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -109,7 +108,9 @@
   --tblr-body-font-weight: 400;
   --tblr-body-line-height: 1.4285714286;
   --tblr-body-color: #1d273b;
-  --tblr-body-bg: #f1f5f9;
+  /* --tblr-body-bg: #f1f5f9; */
+  --tblr-body-bg: #f6f8fb;
+  --tblr-body-bg-rgb: 246, 248, 251;
   --tblr-border-width: 1px;
   --tblr-border-style: solid;
   --tblr-border-color: #e6e7e9;
@@ -354,21 +355,24 @@
   --tblr-shadow-card: 0 0 4px rgba(var(--tblr-body-color-rgb), 0.04);
   --tblr-shadow-card-hover: rgba(var(--tblr-body-color-rgb), 0.16) 0 2px 16px 0;
 }
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
-  /* font-family: "Segoe UI";
-  font-size: 0.875rem; */
   font-family: 'Nunito';
-  font-size: 0.8rem;
-  font-weight: 400;
-  line-height: 1.4285714;
-  color: #232e3c;
-  background-color: #f4f6fa;
+  font-size: var(--tblr-body-font-size);
+  font-weight: var(--tblr-body-font-weight);
+  line-height: var(--tblr-body-line-height);
+  /* color: #232e3c; */
+  /* background-color: #f4f6fa; */
+  color: var(--tblr-body-color);
+  text-align: var(--tblr-body-text-align);
+  background-color: var(--tblr-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
