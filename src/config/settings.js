@@ -10,6 +10,9 @@ export const dbPool = {
   poolMin: 4,
   poolMax: 64,
   poolIncrement: 1,
+  poolPingInterval: 60, // check aliveness of connection if idle in the pool for 60 seconds
+  poolTimeout: 30, // terminate connections that are idle in the pool for 30 seconds
+  queueTimeout: 2000, // terminate getConnection() calls queued for longer than 2000 milliseconds
 }
 export const maxRows = 50000
 export const batchSize = 1000
