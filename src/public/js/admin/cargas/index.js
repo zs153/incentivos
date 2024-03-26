@@ -64,7 +64,7 @@ const buildTable = (state,cursor) => {
     cell.classList.add("w-4")
     cell.innerHTML = `<div class="align-items-center py-1">
       <span class="avatar avatar-rounded bg-green-lt">
-        <h6>OK</h6>
+        <h6 class="m-0">OK</h6>
       </span>
     </div>`
     row.appendChild(cell)
