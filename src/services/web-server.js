@@ -22,7 +22,6 @@ function initialize() {
     app.use(express.urlencoded({ extended: true }))
     app.use(cookieParser())
     app.use(cors())
-    // app.use(express.static(path.join(__dirname, '/public')))
 
     // routes
     app.use('/api', apiEntidadRouter)
@@ -42,7 +41,6 @@ function initialize() {
       })
   })
 }
-
 module.exports.initialize = initialize
 
 function close() {
@@ -57,5 +55,4 @@ function close() {
     })
   })
 }
-
 module.exports.close = close
