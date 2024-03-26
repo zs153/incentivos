@@ -40,7 +40,7 @@ const buildTable = (state, cursor, part, arrTipos) => {
     // col1
     let cell = document.createElement('td')
     cell.classList.add("w-8")
-    cell.innerHTML = `<div class="align-items-center">
+    cell.innerHTML = `<div class="d-flex align-items-center">
     <div class="flex-fill">
       <div class="font-weight-medium">${element.NIFENT}</div>
     </div>`
@@ -57,7 +57,7 @@ const buildTable = (state, cursor, part, arrTipos) => {
 
     // col3
     cell = document.createElement('td')
-    cell.classList.add("w-5")
+    cell.classList.add("w-7")
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
         <div class="font-weight-medium">${element.ADMENT}</div>
@@ -67,7 +67,7 @@ const buildTable = (state, cursor, part, arrTipos) => {
 
     // col4
     cell = document.createElement('td')
-    cell.classList.add("w-15")
+    cell.classList.add("w-12")
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
         <div class="font-weight-medium">${arrTipos.find(o => o.id === element.TIPINC).des}</div>

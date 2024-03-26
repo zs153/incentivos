@@ -64,7 +64,7 @@ const buildTable = (state,cursor) => {
     cell.classList.add("w-4")
     cell.innerHTML = `<div class="align-items-center">
       <span class="avatar avatar-rounded bg-green-lt">
-        <h6>${element.ADMENT.slice(0, 5)}</h6>
+        <h6 class="m-0">${element.ADMENT.slice(0, 5)}</h6>
       </span>
     </div>`
     row.appendChild(cell)
@@ -74,7 +74,7 @@ const buildTable = (state,cursor) => {
     cell.classList.add("w-7")
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
-        <div class="font-weight-medium">${element.NIFENT}</div>
+        <div class="font-weight-light">${element.NIFENT}</div>
       </div>
     </div>`
     row.appendChild(cell)
@@ -83,7 +83,7 @@ const buildTable = (state,cursor) => {
     cell = document.createElement('td')
     cell.innerHTML = `<div class="d-flex align-items-center">
       <div class="flex-fill">
-        <div class="font-weight-medium">${element.DESENT}</div>
+        <div class="font-weight-light">${element.DESENT}</div>
       </div>
     </div>`
     row.appendChild(cell)
