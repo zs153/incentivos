@@ -70,7 +70,7 @@ export const mainPage = async (req, res) => {
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -87,7 +87,7 @@ export const addPage = async (req, res) => {
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -122,7 +122,7 @@ export const insert = async (req, res) => {
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }

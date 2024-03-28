@@ -83,12 +83,12 @@ export const buscarPage = async (req, res) => {
     res.render('main/buscar', {datos})
   } catch (error) {
     if (error.response?.status === 400) {
-      res.render("user/error400", {
-        alerts: [{ msg: error.response.data.msg }],
+      res.render("main/error400", {
+        alerts: [{ msg: error.response.data.data }],
       });
     } else {
-      res.render("user/error500", {
-        alerts: [{ msg: error }],
+      res.render("main/error500", {
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }

@@ -81,11 +81,11 @@ export const mainPage = async (req, res) => {
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
-        alerts: [{ msg: error.response.data.msg }],
+        alerts: [{ msg: error.response.data.data }],
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -104,11 +104,11 @@ export const addPage = async (req, res) => {
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
-        alerts: [{ msg: error.response.data.msg }],
+        alerts: [{ msg: error.response.data.data }],
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -123,21 +123,29 @@ export const editPage = async (req, res) => {
         IDENTI: req.params.id,
       },
     })
-    const datos = {
-      entidad: entidad.data.data[0],
-      filteredRol,
-      arrTiposIncentivo,
-    }
 
-    res.render('admin/entidades/edit', { user, datos })
+    console.log('entidad...', entidad);
+    if (entidad.data.stat === 0) {
+      res.render("admin/error400", {
+        alerts: [{ msg: entidad.data.data }],
+      });
+    } else {
+      const datos = {
+        entidad: entidad.data.data[0],
+        filteredRol,
+        arrTiposIncentivo,
+      }
+  
+      res.render('admin/entidades/edit', { user, datos })
+    }
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
-        alerts: [{ msg: error.response.data.msg }],
+        alerts: [{ msg: error.response.data.data }],
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -172,7 +180,7 @@ export const insert = async (req, res) => {
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -201,11 +209,11 @@ export const update = async (req, res) => {
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
-        alerts: [{ msg: error.response.data.msg }],
+        alerts: [{ msg: error.response.data.data }],
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
@@ -230,11 +238,11 @@ export const remove = async (req, res) => {
   } catch (error) {
     if (error.response?.status === 400) {
       res.render("admin/error400", {
-        alerts: [{ msg: error.response.data.msg }],
+        alerts: [{ msg: error.response.data.data }],
       });
     } else {
       res.render("admin/error500", {
-        alerts: [{ msg: error }],
+        alerts: [{ msg: error.response.data.data }],
       });
     }
   }
