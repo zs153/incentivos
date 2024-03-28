@@ -16,7 +16,7 @@ const simpleExecute = (sql, binds = [], opts = {}) => {
     let conn
 
     opts.outFormat = oracledb.OBJECT
-    // opts.autoCommit = true   // (solo si hay actualizaciones)
+    opts.autoCommit = true   // (solo si hay actualizaciones)
     // opts.prefetchRows = 12   // (numero de rows + 1)
     // opts.fetchArraySize = 11 // (numero de rows en la sentencia sql)
     
