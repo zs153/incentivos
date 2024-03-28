@@ -1,5 +1,5 @@
 import { BIND_OUT, NUMBER } from "oracledb";
-import { simpleExecute } from "../services/database.js";
+import { simpleExecute, exe } from "../services/database.js";
 
 const baseQuery = "SELECT ee.* FROM entidades ee";
 const insertSql = "BEGIN INCENTIVOS_PKG.INSERTENTIDAD(:nifent,:desent,:adment,:tipinc,:usumov,:tipmov,:identi); END;";
@@ -18,10 +18,10 @@ export const find = async (context) => {
   // proc
   const ret = await simpleExecute(query, bind)
 
-  if (ret) {
+  if (ret.rows.length) {
     return ({ stat: ret.rows.length, data: ret.rows })
   } else {
-    return ({ stat: 0, data: [] })
+    return ({ stat: 0, data: 'La entidad no existe' })
   }
 };
 export const findAll = async (context) => {

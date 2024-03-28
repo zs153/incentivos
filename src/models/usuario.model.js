@@ -21,11 +21,11 @@ export const find = async (context) => {
 
   // proc
   const ret = await simpleExecute(query, bind)
-
-  if (ret) {
+  
+  if (ret.rows.length) {
     return ({ stat: ret.rows.length, data: ret.rows })
   } else {
-    return ({ stat: 0, data: [] })
+    return ({ stat: 0, data: 'El usuario no existe' })
   }
 };
 export const findAll = async (context) => {

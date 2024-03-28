@@ -11,7 +11,7 @@ export const carga = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }
 export const cargas = async (req, res) => {
@@ -24,7 +24,7 @@ export const cargas = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }
 
@@ -49,6 +49,6 @@ export const crear = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(400).json({ stat: null, data: err })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }

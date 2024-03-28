@@ -10,7 +10,7 @@ export const entidad = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }
 export const entidades = async (req, res) => {
@@ -23,7 +23,7 @@ export const entidades = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }
 
@@ -47,7 +47,7 @@ export const crear = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }
 export const modificiar = async (req, res) => {
@@ -71,7 +71,7 @@ export const modificiar = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }
 export const borrar = async (req, res) => {
@@ -91,6 +91,6 @@ export const borrar = async (req, res) => {
 
     res.status(200).json(result)
   } catch (err) {
-    res.status(500).json({ stat: null, data: 'Conexión no estableciada' })
+    res.status(500).json({ stat: null, data: err.message })
   }
 }

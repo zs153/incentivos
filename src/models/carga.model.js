@@ -15,10 +15,10 @@ export const carga = async (context) => {
   // proc
   const ret = await simpleExecute(query, bind)
 
-  if (ret) {
+  if (ret.rows.length) {
     return ({ stat: ret.rows.length, data: ret.rows })
   } else {
-    return ({ stat: 0, data: [] })
+    return ({ stat: 0, data: 'La carga no existe' })
   }
 }
 export const cargas = async (context) => {
